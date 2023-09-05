@@ -50,6 +50,7 @@ a{
   <nav class="box">
     <ul>
       <li><a href="home.do">Home</a></li>
+      <li><a href="noticeselectlist.do">Content</a></li>
       <c:if test="${empty id }">
       	<li><a href="memberloginform.do">Login</a></li>
       	<li><a href="memberjoinform.do">Join</a></li>

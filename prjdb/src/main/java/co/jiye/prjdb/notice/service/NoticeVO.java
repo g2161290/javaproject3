@@ -17,4 +17,5 @@ public class NoticeVO {
 	private String noticeAttech;
 	private String noticeImage;
 	private String noticeWriterName;
+	private String noticeThumb;
 }

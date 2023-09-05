@@ -11,7 +11,7 @@
 	<jsp:include page="../menu/메뉴바.jsp"/>
 	<div><h1>회원가입</h1></div>
 	<div>
-		<form id="frm" action="memberjoinform.do" onsubmit="return formCheck()" method="post">
+		<form id="frm" action="memberjoin.do" onsubmit="return formCheck()" method="post">
 		<div>
 			<table border="1">
 				<tr>

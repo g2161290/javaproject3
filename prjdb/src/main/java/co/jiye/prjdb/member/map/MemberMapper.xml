@@ -13,7 +13,7 @@
 	</select>
 	
 	<insert id="memberInsert" parameterType= "co.jiye.prjdb.member.service.MemberVO">
-		INSERT INTO MEMBER
+		INSERT INTO MEMBER (member_id, member_password, member_name, member_tel)
 		VALUES(#{memberId},#{memberPassword},#{memberName},#{memberTel})
 	</insert>
 	
