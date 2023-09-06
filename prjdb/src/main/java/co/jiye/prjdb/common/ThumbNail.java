@@ -39,7 +39,7 @@ public class ThumbNail {
 			BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
 
 			// 썸네일을 저장합니다. 이미지 이름 앞에 "THUMB_" 를 붙여 표시했습니다.
-			thumbName = "THUMB_" + fileName;
+			thumbName = filePath +"THUMB_" + fileName;
 			File thumbFile = new File(thumbName);
 
 			ImageIO.write(destImg, fileExt.toUpperCase(), thumbFile);

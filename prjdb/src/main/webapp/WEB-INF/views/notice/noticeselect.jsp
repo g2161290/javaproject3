@@ -26,7 +26,7 @@
 					<tr>
 						<th>이미지</th>
 						<td colspan="5">
-							<img src="attech/notice/${n.noticeImage} }">
+							<img height=50px src="attech/notice/${n.noticeImage} }">
 						</td>
 					</tr>
 					<tr>
@@ -35,7 +35,7 @@
 					</tr>
 					<tr>
 						<th>내 용</th>
-						<td colspan="5"><textarea rows="10" cols="80">${n.noticeSubject }</textarea></td>
+						<td colspan="5"><textarea rows="3" cols="80">${n.noticeSubject }</textarea></td>
 					</tr>
 					<tr>
 						<th>첨부파일</th>

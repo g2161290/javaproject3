@@ -50,7 +50,11 @@ public class NoticeWrite extends HttpServlet {
 		}
 		String fileExt=imgFileName.substring(imgFileName.lastIndexOf(".")+1); //확장자 명
 		
-		vo.setNoticeThumb(thumbNail.makeThumbnail(saveDir+File.separator+imgFileName, imgFileName, fileExt,saveDir+File.separator));
+		String thumb = thumbNail.makeThumbnail(saveDir + File.separator + imgFileName, imgFileName, fileExt,
+				saveDir + File.separator);
+		thumb = thumb.substring(thumb.lastIndexOf("\\")+1);  //넘어온 결과에서 파일경로를 잘라내고 파일명만 얻음
+		vo.setNoticeThumb(thumb);
+		
 		vo.setNoticeWriter(multi.getParameter("noticeWriter"));
 		vo.setNoticeDate(LocalDate.parse(multi.getParameter("noticeDate")));
 		vo.setNoticeTitle(multi.getParameter("noticeTitle"));
