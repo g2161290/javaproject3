@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import org.imgscalr.Scalr;
 
 public class ThumbNail {
-	public String makeThumbnail(String filePathAll, String fileName, String filePath, String fileExt) {
+	public String makeThumbnail(String filePathAll, String fileName, String fileExt, String filePath) {
 		String thumbName = null; // 돌려받을 썸네일 명
 		try {
 			// 저장된 원본파일로부터 BufferedImage 객체를 생성합니다.
@@ -41,7 +41,6 @@ public class ThumbNail {
 			// 썸네일을 저장합니다. 이미지 이름 앞에 "THUMB_" 를 붙여 표시했습니다.
 			thumbName = filePath +"THUMB_" + fileName;
 			File thumbFile = new File(thumbName);
-
 			ImageIO.write(destImg, fileExt.toUpperCase(), thumbFile);
 		} catch (IOException e) {
 			e.printStackTrace();

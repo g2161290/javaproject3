@@ -1,9 +1,8 @@
 package co.jiye.prjdb.notice.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,32 +11,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import co.jiye.prjdb.notice.service.ReplyService;
 import co.jiye.prjdb.notice.service.ReplyVO;
 import co.jiye.prjdb.notice.serviceImpl.ReplyServiceImpl;
 
-@WebServlet("/AjaxReplyList.do")
-public class AjaxReplyList extends HttpServlet {
+@WebServlet("/AjaxReplyAdd.do")
+public class AjaxReplyAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public AjaxReplyList() {
+    public AjaxReplyAdd() {
         super();
     }
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nid = request.getParameter("nid");
+		String reply = request.getParameter("content");
+		String replyer = request.getParameter("writer");
 		
-		String nid=request.getParameter("nid");
-		System.out.println(nid);
-		ReplyService svc=new ReplyServiceImpl();
-		List<ReplyVO> list=new ArrayList<ReplyVO>();
-		list = svc.listReply(Integer.parseInt(nid));
-		ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule()); //json 형태의 데이터로 변환
-		String json=objectMapper.writeValueAsString(list);
+		ReplyVO vo = new ReplyVO();
+		vo.setNoticeId(Integer.parseInt(nid));
+		vo.setReply(reply);
+		vo.setReplyer(replyer);
+		
+		ReplyService svc = new ReplyServiceImpl();
+		
+		Map<String, Object> resultMap= new HashMap<>();
+		
+		if(svc.addReply(vo)) {
+			resultMap.put("retCode", "Success");
+			resultMap.put("data", vo);
+		} else {
+			resultMap.put("retCode", "Fail");
+		}
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json=objectMapper.writeValueAsString(resultMap);
 		
 		response.setContentType("text/json;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.print(json);
+		response.getWriter().print(json);
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

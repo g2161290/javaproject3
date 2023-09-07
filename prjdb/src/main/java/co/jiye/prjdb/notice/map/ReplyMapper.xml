@@ -13,8 +13,8 @@
 	</select>
 
 	<insert id="insert">
-		<selectKey keyProperty="replyId" resultType="int" order="BEFORE">
-			SELECT seq_reply.nextval from dual
+		<selectKey keyProperty="replyId,replyDate" resultType="co.jiye.prjdb.notice.service.ReplyVO" order="BEFORE">
+			SELECT seq_reply.nextval as replyId, sysdate as replyDate from dual
 		</selectKey>
 		insert into tbl_reply (reply_id, notice_id, replyer, reply)
 		values (#{replyId}, #{noticeId}, #{replyer}, #{reply})
