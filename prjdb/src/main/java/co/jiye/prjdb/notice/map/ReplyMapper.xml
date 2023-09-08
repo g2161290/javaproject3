@@ -29,4 +29,11 @@
 		delete from tbl_reply
 		where reply_id = #{replyId}
 	</delete>
+	
+	<select id="listEvent" resultType="co.jiye.prjdb.notice.service.EventVO">
+		select * from events
+	</select>
+	<insert id="eventInsert">
+		insert into events values()
+	</insert>
 </mapper>

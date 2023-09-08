@@ -8,4 +8,6 @@ public interface ReplyService {
 	public boolean delReply(int replyId);
 	public ReplyVO getReply(int replyId);
 	public List<ReplyVO> listReply(int noticeId);
+	public List<EventVO> listEvent();
+	public boolean eventInsert(EventVO vo);
 }
