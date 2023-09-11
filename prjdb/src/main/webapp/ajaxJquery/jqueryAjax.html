@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>jqueryAjax.html</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div id="show"></div>
+	<div class="reply">
+		<input type="text" name="replyer">
+		<input type="text" name="reply">
+	</div>
+	<script>
+		$.ajax({
+			url: 'dataset.xml',
+			method: 'get',
+			success: function (result) {
+				let records = $(result).find('record');
+				for (let i = 0; i < records.length; i++) {
+					$('#show').append($('<p/>')).text(records[i].children[0].innertext)
+						+ ','
+						+ records[i].children[1].innerHTML
+				}
+				error: function error(err) {
+					console.log(err)
+				}
+			}
+		})
+		$('#addBtn').on('click', function (e) {
+			$.ajax({
+				url: '../AjaxReplyAdd.do',
+				method: 'post',
+				data: {nid: 2, writer: 'uuser1', content: 'test'},
+				success: function(e){
+					console.log(e)
+				},
+				error: function(e){
+					console.log(e)
+				}
+			})
+		})
+	</script>
+</body>
+
+</html>
