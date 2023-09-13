@@ -87,12 +87,11 @@
 					</tfoot>
 				</table>
 				<script>
-					let noticeId= "${n.noticeId}";
+				const rep = new Reply();
+				let noticeId = "${n.noticeId}"
 					new DataTable('#example', {
-						ajax : 'AjaxReplyList.do?nid='+noticeId+'&param=jquery'
-					});
-				</script>
-				<script>
+						ajax : 'AjaxReplyList.do?nid='+noticeId+'&param=jquery',
+					
 				columns:[{
 					data: 'replyId'
 				},{
@@ -104,7 +103,7 @@
 					render:function(data,type){
 						return rep.displayDate(data);
 					}
-				}]
+				}]});
 					function addNewRow() {
 					    table.row
 					        .add({
@@ -116,12 +115,26 @@
 					        .draw(false);
 					}
 					 
-					const table = new DataTable('#example');
 					 
 					document.querySelector('#addRow').addEventListener('click', addNewRow);
 					 
 					// Automatically add a first row of data
-					addNewRow();
+//					addNewRow();
+					table.on('click', 'tbody tr', (e) => {
+						let classList = e.currentTarget.classList;
+
+						if (classList.contains('selected')) {
+							classList.remove('selected');
+						}
+						else {
+							table.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
+							classList.add('selected');
+						}
+					});
+
+					document.querySelector('#button').addEventListener('click', function () {
+						table.row('.selected').remove().draw(false);
+					});
 				</script>
 			</div>
 		</div>

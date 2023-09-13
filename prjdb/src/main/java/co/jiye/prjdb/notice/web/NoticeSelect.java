@@ -28,7 +28,6 @@ public class NoticeSelect extends HttpServlet {
 		vo.setNoticeId(Integer.valueOf(request.getParameter("noticeId")));
 
 		vo = dao.noticeSelect(vo);
-		request.setAttribute("n", vo);
 		String page = "notice/noticeselect2";
 		ViewResolve.views(request, response, page);
 	}
